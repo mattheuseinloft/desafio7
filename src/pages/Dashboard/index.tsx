@@ -47,7 +47,7 @@ const Dashboard: React.FC = () => {
 
   return (
     <>
-      <Header />
+      <Header selected="list" />
       <Container>
         <CardContainer>
           <Card>

@@ -1,7 +1,11 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 interface ContainerProps {
   size?: 'small' | 'large';
+}
+
+interface NavProps {
+  selected: 'list' | 'import';
 }
 
 export const Container = styled.div<ContainerProps>`
@@ -15,22 +19,33 @@ export const Container = styled.div<ContainerProps>`
     display: flex;
     align-items: center;
     justify-content: space-between;
+  }
+`;
 
-    nav {
-      a {
-        color: #fff;
-        text-decoration: none;
-        font-size: 16px;
-        transition: opacity 0.2s;
+/* prettier-ignore */
+export const Nav = styled.nav<NavProps>`
+  a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    transition: opacity 0.2s;
+    border-bottom: 2px solid #5636d3;
 
-        & + a {
-          margin-left: 32px;
-        }
+    &:first-child {
+      ${props => props.selected === 'list' && css`
+        border-bottom: 2px solid #ff872c;
+      `}
+    }
 
-        &:hover {
-          opacity: 0.6;
-        }
-      }
+    & + a {
+      margin-left: 32px;
+      ${props => props.selected === 'import' && css`
+        border-bottom: 2px solid #ff872c;
+      `}
+    }
+
+    &:hover {
+      opacity: 0.6;
     }
   }
 `;
